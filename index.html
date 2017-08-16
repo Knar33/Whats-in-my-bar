@@ -7,9 +7,13 @@
     </head>
     
     <body>
-        <form id="drinkForm">
-            
-        </form>
+        <main class="container" ng-app="drinks">
+            <div class="row" ng-controller="getIngredients">
+                <form id="drinkForm">
+                    <span style="display: inline-block; width: 10%" ng-repeat="ingredient in ingredients.drinks"><input type="checkbox">{{ingredient.strIngredient1}}</span>
+                </form>
+            </div>
+        </main>
         <script src="bootstrap/js/jquery-3.2.1.js"></script>
         <script src="bootstrap/js/bootstrap.js"></script>
         <script src="js/angular.js"></script>

@@ -1,3 +1,12 @@
-for (i = 0; i < 300; i++) {
-    $("#drinkForm").append("<span style='display: inline-block; width: 10%'><input type='checkbox'>Checkbox " + i + "</span>");
-}
+angular.module("drinks", []);
+
+angular.module("drinks").controller(
+    "getIngredients", 
+    ['$scope', '$http', function($scope, $http){
+        $http.get("http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list").then(function(result){
+            $scope.ingredients = result.data;
+        }, function(error){
+            console.log(error.message);
+        });
+    }]
+);
