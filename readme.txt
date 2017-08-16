@@ -5,6 +5,7 @@ user submitted ingredients
         text boxes with "add another ingredient" button next to it, that creates a new text box under the first.
         textarea, where user separates ingredients on new lines, or by commas
         dropdown of all possible ingredients gathered from the api itself. When one is picked, "add another ingredient" appears next to dropdown that creates another dropdown below the first
+        checkboxes of all ingredients
     
 return list of cocktails that contain ONLY the ingredients listed
     Search cocktail by name
@@ -49,4 +50,4 @@ return list of cocktails that contain ONLY the ingredients listed
         g: search by glass
         
 
-return list of cocktails that contain one or more of the ingredients, plus one or more additional ingredients that the user doesn't have
+(maybe later) return list of cocktails that contain one or more of the ingredients, plus one or more additional ingredients that the user doesn't have
