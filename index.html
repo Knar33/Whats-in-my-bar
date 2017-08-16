@@ -10,7 +10,11 @@
         <main class="container" ng-app="drinks">
             <div class="row" ng-controller="getIngredients">
                 <form id="drinkForm">
-                    <span style="display: inline-block; width: 10%" ng-repeat="ingredient in ingredients.drinks | orderBy:'strIngredient1'"><input type="checkbox">{{ingredient.strIngredient1}}</span>
+                    <div class="row">
+                        <div class="col-sm-2" style="padding: .2em 0;" ng-repeat="ingredient in ingredients.drinks | orderBy:'strIngredient1'">
+                            <input type="checkbox">{{ingredient.strIngredient1}}
+                        </div>
+                    </div>
                 </form>
             </div>
         </main>
