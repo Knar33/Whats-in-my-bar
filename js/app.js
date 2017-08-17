@@ -14,7 +14,11 @@ angular.module("drinks").directive("getIngredients", function(){
             });
             
             $scope.submitChoices = function() {
-                $scope.drinkForm;
+                Object.keys($scope.inputs).forEach(function(ingredientName){
+                    if ($scope.inputs[ingredientName]) {
+                        $scope.drinkList.push(ingredientName);
+                    }
+                });
             };
         }]
     }
