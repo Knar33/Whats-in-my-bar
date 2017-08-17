@@ -1,13 +1,25 @@
+to do:
+        add an ng-submit function to the form that adds all ingredients to an array, which triggers the results directive or controller?
+        
+        
 features
 
 user submitted ingredients
-    options:
-        text boxes with "add another ingredient" button next to it, that creates a new text box under the first.
-        textarea, where user separates ingredients on new lines, or by commas
-        dropdown of all possible ingredients gathered from the api itself. When one is picked, "add another ingredient" appears next to dropdown that creates another dropdown below the first
-        checkboxes of all ingredients
+    checkboxes of all ingredients
+    ng-submit: put all checked ingredients into array.
     
 return list of cocktails that contain ONLY the ingredients listed
+    for each ingredient in the selected ingredient array {
+        do API call http://www.thecocktaildb.com/api/json/v1/1/search.php?i=vodka
+        for each cocktail returned {
+            do API call http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=15112
+            if (exists in ingredient array: ingredient1, ingredient2, ingredient3 etc etc) {
+                add to drink list
+            }
+        }
+                
+    }
+
     Search cocktail by name
     http://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita
 
