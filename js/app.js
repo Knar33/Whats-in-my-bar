@@ -4,7 +4,7 @@ angular.module("drinks").directive("getIngredients", function(){
     return {
         templateUrl: "templates/ingredient-list.html",
         controller: ['$scope', '$http', function($scope, $http){
-            
+            $scope.inputs = {};
             $scope.drinkList = [];
             
             $http.get("http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list").then(function(result){

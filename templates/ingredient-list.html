@@ -3,7 +3,7 @@
         <div class="row">
             <input type="text" name="testName">
             <div class="col-sm-2" style="padding: .2em 0;" ng-repeat="ingredient in ingredients.drinks | orderBy:'strIngredient1'">
-                <input type="checkbox" ng-init="modelName = ingredient.strIngredient1.split(' ').join('-')" ng-model="modelName" name="{{ ingredient.strIngredient1.split(' ').join('-') }}">{{ingredient.strIngredient1}}
+                <input type="checkbox" ng-model="inputs[ingredient.strIngredient1.split(' ').join('-')]" name="{{ ingredient.strIngredient1.split(' ').join('-') }}">{{ingredient.strIngredient1}}
             </div>
             <input type="submit">
         </div>
