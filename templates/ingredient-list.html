@@ -1,15 +1,34 @@
-<div class="row">
-    <form id="drinkForm" name="drinkForm" ng-submit="submitChoices()">
+<form id="drinkForm" name="drinkForm" ng-submit="submitChoices()">
         <div class="row">
-            <div class="col-md-2" style="padding: .2em 0;" ng-repeat="ingredient in ingredients.drinks | orderBy:'strIngredient1'">
+            <div class="col-md-2" ng-repeat="ingredient in ingredients.drinks | orderBy:'strIngredient1'">
                 <label for="{{ ingredient.strIngredient1.split(' ').join('_') }}">
                     <input type="checkbox" ng-model="inputs[ingredient.strIngredient1.split(' ').join('_')]" name="{{ ingredient.strIngredient1.split(' ').join('_') }}" id="{{ ingredient.strIngredient1.split(' ').join('_') }}">{{ingredient.strIngredient1}}
                 </label>
             </div>
-            <input type="submit">
         </div>
-    </form>
-</div>
-<div ng-repeat="mixableDrink in mixableDrinks">
-    {{mixableDrink}}<br><br>
+    <input type="submit">
+</form>
+
+<div ng-repeat="mixableDrink in mixableDrinks" class="row" style="margin: 20px; border: 20px;">
+    {{mixableDrink.strDrink}}<br>
+    {{mixableDrink.strCategory}}<br>
+    {{mixableDrink.strAlcoholic}}<br>
+    {{mixableDrink.strGlass}}<br>
+    Instructions: {{mixableDrink.strInstructions}}
+    <div ng-if="mixableDrink.strIngredient1 != ''">{{mixableDrink.strMeasure1}}{{mixableDrink.strIngredient1}}</div>
+    <div ng-if="mixableDrink.strIngredient2 != ''">{{mixableDrink.strMeasure2}}{{mixableDrink.strIngredient2}}</div>
+    <div ng-if="mixableDrink.strIngredient3 != ''">{{mixableDrink.strMeasure3}}{{mixableDrink.strIngredient3}}</div>
+    <div ng-if="mixableDrink.strIngredient4 != ''">{{mixableDrink.strMeasure4}}{{mixableDrink.strIngredient4}}</div>
+    <div ng-if="mixableDrink.strIngredient5 != ''">{{mixableDrink.strMeasure5}}{{mixableDrink.strIngredient5}}</div>
+    <div ng-if="mixableDrink.strIngredient6 != ''">{{mixableDrink.strMeasure6}}{{mixableDrink.strIngredient6}}</div>
+    <div ng-if="mixableDrink.strIngredient7 != ''">{{mixableDrink.strMeasure7}}{{mixableDrink.strIngredient7}}</div>
+    <div ng-if="mixableDrink.strIngredient8 != ''">{{mixableDrink.strMeasure8}}{{mixableDrink.strIngredient8}}</div>
+    <div ng-if="mixableDrink.strIngredient9 != ''">{{mixableDrink.strMeasure9}}{{mixableDrink.strIngredient9}}</div>
+    <div ng-if="mixableDrink.strIngredient10 != ''">{{mixableDrink.strMeasure10}}{{mixableDrink.strIngredient10}}</div>
+    <div ng-if="mixableDrink.strIngredient11 != ''">{{mixableDrink.strMeasure11}}{{mixableDrink.strIngredient11}}</div>
+    <div ng-if="mixableDrink.strIngredient12 != ''">{{mixableDrink.strMeasure12}}{{mixableDrink.strIngredient12}}</div>
+    <div ng-if="mixableDrink.strIngredient13 != ''">{{mixableDrink.strMeasure13}}{{mixableDrink.strIngredient13}}</div>
+    <div ng-if="mixableDrink.strIngredient14 != ''">{{mixableDrink.strMeasure14}}{{mixableDrink.strIngredient14}}</div>
+    <div ng-if="mixableDrink.strIngredient15 != ''">{{mixableDrink.strMeasure15}}{{mixableDrink.strIngredient15}}</div>
+    <div ng-if="mixableDrink.strDrinkThumb != ''"><img src="{{mixableDrink.strDrinkThumb}}"></div>
 </div>

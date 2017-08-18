@@ -29,7 +29,6 @@ angular.module("drinks").directive("getIngredients", function(){
                 $scope.drinkList.forEach(function(drink){
                     $http.get("http://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + drink.split('_').join(' ')).then(function(result2){
                         $scope.retreivedDrinks = result2.data;
-                        console.log($scope.retreivedDrinks);
                         //for each drink the API call returned
                         $scope.retreivedDrinks.drinks.forEach(function(retreivedDrink) {
                             $http.get("http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + retreivedDrink.idDrink).then(function(result3){
@@ -66,9 +65,17 @@ angular.module("drinks").directive("getIngredients", function(){
                                 if ($scope.retreivedDrinkData.drinks[0].strIngredient15 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient15.split(' ').join('_'), $scope.drinkList) == -1)
                                     mixable = false;
                                 
-                                if (mixable && $.inArray(retreivedDrink.idDrink, $scope.mixableDrinks) == -1) {
-                                    $scope.mixableDrinks.push($scope.retreivedDrinkData.drinks[0]);
-                                    console.log($scope.retreivedDrinkData);
+                                if (mixable) {
+                                    var found = false;
+                                    for(var i = 0; i < $scope.mixableDrinks.length; i++) {
+                                        if ($scope.mixableDrinks[i].idDrink == $scope.retreivedDrinkData.drinks[0].idDrink) {
+                                            found = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!found) {
+                                        $scope.mixableDrinks.push($scope.retreivedDrinkData.drinks[0]);
+                                    }
                                 }
                             }, function(error){
                                 console.log(error.message);
