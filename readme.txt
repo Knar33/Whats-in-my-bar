@@ -1,7 +1,3 @@
-to do:
-        add an ng-submit function to the form that adds all ingredients to an array, which triggers the results directive or controller?
-        
-        
 features
 
 user submitted ingredients
@@ -19,6 +15,9 @@ return list of cocktails that contain ONLY the ingredients listed
         }
                 
     }
+    
+    options for returning matching drinks:
+        2 nes
 
     Search cocktail by name
     http://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita

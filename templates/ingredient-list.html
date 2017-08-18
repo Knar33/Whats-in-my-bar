@@ -2,11 +2,14 @@
     <form id="drinkForm" name="drinkForm" ng-submit="submitChoices()">
         <div class="row">
             <div class="col-md-2" style="padding: .2em 0;" ng-repeat="ingredient in ingredients.drinks | orderBy:'strIngredient1'">
-                <label for="{{ ingredient.strIngredient1.split(' ').join('') }}">
-                    <input type="checkbox" ng-model="inputs[ingredient.strIngredient1.split(' ').join('')]" name="{{ ingredient.strIngredient1.split(' ').join('') }}" id="{{ ingredient.strIngredient1.split(' ').join('') }}">{{ingredient.strIngredient1}}
+                <label for="{{ ingredient.strIngredient1.split(' ').join('_') }}">
+                    <input type="checkbox" ng-model="inputs[ingredient.strIngredient1.split(' ').join('_')]" name="{{ ingredient.strIngredient1.split(' ').join('_') }}" id="{{ ingredient.strIngredient1.split(' ').join('_') }}">{{ingredient.strIngredient1}}
                 </label>
             </div>
             <input type="submit">
         </div>
     </form>
+</div>
+<div ng-repeat="mixableDrink in mixableDrinks">
+    {{mixableDrink}}<br><br>
 </div>
