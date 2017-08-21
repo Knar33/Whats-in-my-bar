@@ -39,6 +39,7 @@ angular.module("drinks").directive("getIngredients", function(){
                                 var almostMixable = true;
                                 var missingIngredients = 0;
                                 
+                                //loop through each ingredient in the recipe and see if we have it in our ingredient list.
                                 for (i = 0; i < 15; i++) {
                                     if ($scope.retreivedDrinkData.drinks[0]['strIngredient' + i] && $.inArray($scope.retreivedDrinkData.drinks[0]['strIngredient' + i].split(' ').join('_'), $scope.drinkList) == -1) {
                                         mixable = false;
@@ -48,6 +49,9 @@ angular.module("drinks").directive("getIngredients", function(){
                                             almostMixable = false;
                                         }
                                     }
+                                }
+                                if (missingIngredients == 0) {
+                                    almostMixable = false;
                                 }
                                 
                                 if (mixable) {
