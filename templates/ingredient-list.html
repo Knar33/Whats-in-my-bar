@@ -9,7 +9,7 @@
     <input type="submit">
 </form>
 
-<h1 ng-show="submitted">Mixable</h1>
+<h1 ng-show="submitted">Drinks you can make with the ingredients you have</h1>
 <div ng-repeat="mixableDrink in mixableDrinks" class="row" style="margin: 20px; border: 20px;">
     {{mixableDrink.strDrink}}<br>
     {{mixableDrink.strCategory}}<br>
@@ -34,7 +34,7 @@
     <div ng-if="mixableDrink.strDrinkThumb != ''"><img src="{{mixableDrink.strDrinkThumb}}"></div>
 </div>
 
-<h1 ng-show="submitted">Mixable with 1 extra ingredient that you don't have</h1>
+<h1 ng-show="submitted">Drinks you can make with 1 extra ingredient that you don't have</h1>
 <div ng-repeat="almostMixableDrink in almostMixableDrinks" class="row" style="margin: 20px; border: 20px;">
     {{almostMixableDrink.strDrink}}<br>
     {{almostMixableDrink.strCategory}}<br>
