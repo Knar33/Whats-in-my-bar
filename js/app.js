@@ -6,6 +6,7 @@ angular.module("drinks").directive("getIngredients", function(){
         controller: ['$scope', '$http', function($scope, $http){
             
             $scope.inputs = {};
+            $scope.submitted = false;
             
             $http.get("http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list").then(function(result){
                 $scope.ingredients = result.data;
@@ -14,6 +15,7 @@ angular.module("drinks").directive("getIngredients", function(){
             });
             
             $scope.submitChoices = function() {
+                $scope.submitted = true;
                 $scope.drinkList = [];
                 $scope.possibleDrinks = [];
                 $scope.mixableDrinks = [];
@@ -23,9 +25,9 @@ angular.module("drinks").directive("getIngredients", function(){
                     if ($scope.inputs[ingredientName]) {
                         $scope.drinkList.push(ingredientName);
                     }
-                });
+                });           
                 
-                //do API call for each drink the user entered, get retreivedDrinks array back push those to new array
+                //drinks you can mix with 1 or 2 additional ingredients
                 $scope.drinkList.forEach(function(drink){
                     $http.get("http://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + drink.split('_').join(' ')).then(function(result2){
                         $scope.retreivedDrinks = result2.data;
@@ -34,36 +36,19 @@ angular.module("drinks").directive("getIngredients", function(){
                             $http.get("http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + retreivedDrink.idDrink).then(function(result3){
                                 $scope.retreivedDrinkData = result3.data;
                                 var mixable = true;
-                                if ($scope.retreivedDrinkData.drinks[0].strIngredient1 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient1.split(' ').join('_'), $scope.drinkList) == -1)
-                                    mixable = false;
-                                if ($scope.retreivedDrinkData.drinks[0].strIngredient2 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient2.split(' ').join('_'), $scope.drinkList) == -1)
-                                    mixable = false;
-                                if ($scope.retreivedDrinkData.drinks[0].strIngredient3 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient3.split(' ').join('_'), $scope.drinkList) == -1)
-                                    mixable = false;
-                                if ($scope.retreivedDrinkData.drinks[0].strIngredient4 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient4.split(' ').join('_'), $scope.drinkList) == -1)
-                                    mixable = false;
-                                if ($scope.retreivedDrinkData.drinks[0].strIngredient5 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient5.split(' ').join('_'), $scope.drinkList) == -1)
-                                    mixable = false;
-                                if ($scope.retreivedDrinkData.drinks[0].strIngredient6 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient6.split(' ').join('_'), $scope.drinkList) == -1)
-                                    mixable = false;
-                                if ($scope.retreivedDrinkData.drinks[0].strIngredient7 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient7.split(' ').join('_'), $scope.drinkList) == -1)
-                                    mixable = false;
-                                if ($scope.retreivedDrinkData.drinks[0].strIngredient8 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient8.split(' ').join('_'), $scope.drinkList) == -1)
-                                    mixable = false;
-                                if ($scope.retreivedDrinkData.drinks[0].strIngredient9 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient9.split(' ').join('_'), $scope.drinkList) == -1)
-                                    mixable = false;
-                                if ($scope.retreivedDrinkData.drinks[0].strIngredient10 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient10.split(' ').join('_'), $scope.drinkList) == -1)
-                                    mixable = false;
-                                if ($scope.retreivedDrinkData.drinks[0].strIngredient11 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient11.split(' ').join('_'), $scope.drinkList) == -1)
-                                    mixable = false;
-                                if ($scope.retreivedDrinkData.drinks[0].strIngredient12 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient12.split(' ').join('_'), $scope.drinkList) == -1)
-                                    mixable = false;
-                                if ($scope.retreivedDrinkData.drinks[0].strIngredient13 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient13.split(' ').join('_'), $scope.drinkList) == -1)
-                                    mixable = false;
-                                if ($scope.retreivedDrinkData.drinks[0].strIngredient14 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient14.split(' ').join('_'), $scope.drinkList) == -1)
-                                    mixable = false;
-                                if ($scope.retreivedDrinkData.drinks[0].strIngredient15 && $.inArray($scope.retreivedDrinkData.drinks[0].strIngredient15.split(' ').join('_'), $scope.drinkList) == -1)
-                                    mixable = false;
+                                var almostMixable = true;
+                                var missingIngredients = 0;
+                                
+                                for (i = 0; i < 15; i++) {
+                                    if ($scope.retreivedDrinkData.drinks[0]['strIngredient' + i] && $.inArray($scope.retreivedDrinkData.drinks[0]['strIngredient' + i].split(' ').join('_'), $scope.drinkList) == -1) {
+                                        mixable = false;
+                                        if (missingIngredients < 1) {
+                                            missingIngredients++;
+                                        } else {
+                                            almostMixable = false;
+                                        }
+                                    }
+                                }
                                 
                                 if (mixable) {
                                     var found = false;
@@ -77,6 +62,20 @@ angular.module("drinks").directive("getIngredients", function(){
                                         $scope.mixableDrinks.push($scope.retreivedDrinkData.drinks[0]);
                                     }
                                 }
+                                
+                                if (almostMixable) {
+                                    var found = false;
+                                    for(var i = 0; i < $scope.almostMixableDrinks.length; i++) {
+                                        if ($scope.almostMixableDrinks[i].idDrink == $scope.retreivedDrinkData.drinks[0].idDrink) {
+                                            found = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!found) {
+                                        $scope.almostMixableDrinks.push($scope.retreivedDrinkData.drinks[0]);
+                                    }
+                                }
+                                
                             }, function(error){
                                 console.log(error.message);
                             });
@@ -85,10 +84,7 @@ angular.module("drinks").directive("getIngredients", function(){
                         console.log(error.message);
                     });
                 });
-                console.log($scope.mixableDrinks);
             };
-            
-            
         }]
     }
 });
