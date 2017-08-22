@@ -1,60 +1,63 @@
-<form id="drinkForm" name="drinkForm" ng-submit="submitChoices()">
+<form id="drinkForm" name="drinkForm" ng-submit="submitChoices()" class="lightBrown">
         <div class="row">
-            <div class="col-md-2" ng-repeat="ingredient in ingredients.drinks | orderBy:'strIngredient1'">
+            <div class="col-xs-6 col-sm-4 col-md-2" ng-repeat="ingredient in ingredients.drinks | orderBy:'strIngredient1'">
                 <label for="{{ ingredient.strIngredient1.split(' ').join('_') }}">
                     <input type="checkbox" ng-model="inputs[ingredient.strIngredient1.split(' ').join('_')]" name="{{ ingredient.strIngredient1.split(' ').join('_') }}" id="{{ ingredient.strIngredient1.split(' ').join('_') }}">{{ingredient.strIngredient1}}
                 </label>
             </div>
         </div>
-    <input type="submit">
+    <div class="text-center margined"><input type="submit" class="largeButton"></div>
 </form>
+<div style="height: 100%; min-height: 100%;" name="resultsDiv" id="resultsDiv" class="col-md-offset-3 col-md-6">
+    <h1 ng-show="showMixable" class="lightBrown">Drinks you can make with the ingredients you have</h1>
+    <div ng-repeat="mixableDrink in mixableDrinks" class="row" style="margin: 20px; border: 20px;">
+        <h3>{{mixableDrink.strDrink}}</h3>
+        <strong>{{mixableDrink.strAlcoholic}} {{mixableDrink.strCategory}}</strong><br>
+        <strong>Glass:</strong> {{mixableDrink.strGlass}}<br><br>   
+        <ul style="margin-bottom: 0;">
+            <div ng-if="mixableDrink.strIngredient1 != ''"><li>{{mixableDrink.strMeasure1}}{{mixableDrink.strIngredient1}}</li></div>
+        <div ng-if="mixableDrink.strIngredient2 != ''"><li>{{mixableDrink.strMeasure2}}{{mixableDrink.strIngredient2}}</li></div>
+        <div ng-if="mixableDrink.strIngredient3 != ''"><li>{{mixableDrink.strMeasure3}}{{mixableDrink.strIngredient3}}</li></div>
+        <div ng-if="mixableDrink.strIngredient4 != ''"><li>{{mixableDrink.strMeasure4}}{{mixableDrink.strIngredient4}}</li></div>
+        <div ng-if="mixableDrink.strIngredient5 != ''"><li>{{mixableDrink.strMeasure5}}{{mixableDrink.strIngredient5}}</li></div>
+        <div ng-if="mixableDrink.strIngredient6 != ''"><li>{{mixableDrink.strMeasure6}}{{mixableDrink.strIngredient6}}</li></div>
+        <div ng-if="mixableDrink.strIngredient7 != ''"><li>{{mixableDrink.strMeasure7}}{{mixableDrink.strIngredient7}}</li></div>
+        <div ng-if="mixableDrink.strIngredient8 != ''"><li>{{mixableDrink.strMeasure8}}{{mixableDrink.strIngredient8}}</li></div>
+        <div ng-if="mixableDrink.strIngredient9 != ''"><li>{{mixableDrink.strMeasure9}}{{mixableDrink.strIngredient9}}</li></div>
+        <div ng-if="mixableDrink.strIngredient10 != ''"><li>{{mixableDrink.strMeasure10}}{{mixableDrink.strIngredient10}}</li></div>
+        <div ng-if="mixableDrink.strIngredient11 != ''"><li>{{mixableDrink.strMeasure11}}{{mixableDrink.strIngredient11}}</li></div>
+        <div ng-if="mixableDrink.strIngredient12 != ''"><li>{{mixableDrink.strMeasure12}}{{mixableDrink.strIngredient12}}</li></div>
+        <div ng-if="mixableDrink.strIngredient13 != ''"><li>{{mixableDrink.strMeasure13}}{{mixableDrink.strIngredient13}}</li></div>
+        <div ng-if="mixableDrink.strIngredient14 != ''"><li>{{mixableDrink.strMeasure14}}{{mixableDrink.strIngredient14}}</li></div>
+        <div ng-if="mixableDrink.strIngredient15 != ''"><li>{{mixableDrink.strMeasure15}}{{mixableDrink.strIngredient15}}</li></div>
+        </ul>
+        <strong>Instructions:</strong> {{mixableDrink.strInstructions}}<br><br>
+        <div ng-if="mixableDrink.strDrinkThumb != ''"><img src="{{mixableDrink.strDrinkThumb}}"></div>
+    </div>
 
-<h1 ng-show="submitted">Drinks you can make with the ingredients you have</h1>
-<div ng-repeat="mixableDrink in mixableDrinks" class="row" style="margin: 20px; border: 20px;">
-    {{mixableDrink.strDrink}}<br>
-    {{mixableDrink.strCategory}}<br>
-    {{mixableDrink.strAlcoholic}}<br>
-    {{mixableDrink.strGlass}}<br>
-    Instructions: {{mixableDrink.strInstructions}}
-    <div ng-if="mixableDrink.strIngredient1 != ''">{{mixableDrink.strMeasure1}}{{mixableDrink.strIngredient1}}</div>
-    <div ng-if="mixableDrink.strIngredient2 != ''">{{mixableDrink.strMeasure2}}{{mixableDrink.strIngredient2}}</div>
-    <div ng-if="mixableDrink.strIngredient3 != ''">{{mixableDrink.strMeasure3}}{{mixableDrink.strIngredient3}}</div>
-    <div ng-if="mixableDrink.strIngredient4 != ''">{{mixableDrink.strMeasure4}}{{mixableDrink.strIngredient4}}</div>
-    <div ng-if="mixableDrink.strIngredient5 != ''">{{mixableDrink.strMeasure5}}{{mixableDrink.strIngredient5}}</div>
-    <div ng-if="mixableDrink.strIngredient6 != ''">{{mixableDrink.strMeasure6}}{{mixableDrink.strIngredient6}}</div>
-    <div ng-if="mixableDrink.strIngredient7 != ''">{{mixableDrink.strMeasure7}}{{mixableDrink.strIngredient7}}</div>
-    <div ng-if="mixableDrink.strIngredient8 != ''">{{mixableDrink.strMeasure8}}{{mixableDrink.strIngredient8}}</div>
-    <div ng-if="mixableDrink.strIngredient9 != ''">{{mixableDrink.strMeasure9}}{{mixableDrink.strIngredient9}}</div>
-    <div ng-if="mixableDrink.strIngredient10 != ''">{{mixableDrink.strMeasure10}}{{mixableDrink.strIngredient10}}</div>
-    <div ng-if="mixableDrink.strIngredient11 != ''">{{mixableDrink.strMeasure11}}{{mixableDrink.strIngredient11}}</div>
-    <div ng-if="mixableDrink.strIngredient12 != ''">{{mixableDrink.strMeasure12}}{{mixableDrink.strIngredient12}}</div>
-    <div ng-if="mixableDrink.strIngredient13 != ''">{{mixableDrink.strMeasure13}}{{mixableDrink.strIngredient13}}</div>
-    <div ng-if="mixableDrink.strIngredient14 != ''">{{mixableDrink.strMeasure14}}{{mixableDrink.strIngredient14}}</div>
-    <div ng-if="mixableDrink.strIngredient15 != ''">{{mixableDrink.strMeasure15}}{{mixableDrink.strIngredient15}}</div>
-    <div ng-if="mixableDrink.strDrinkThumb != ''"><img src="{{mixableDrink.strDrinkThumb}}"></div>
-</div>
-
-<h1 ng-show="submitted">Drinks you can make with 1 extra ingredient that you don't have</h1>
-<div ng-repeat="almostMixableDrink in almostMixableDrinks" class="row" style="margin: 20px; border: 20px;">
-    {{almostMixableDrink.strDrink}}<br>
-    {{almostMixableDrink.strCategory}}<br>
-    {{almostMixableDrink.strAlcoholic}}<br>
-    {{almostMixableDrink.strGlass}}<br>
-    Instructions: {{almostMixableDrink.strInstructions}}
-    <div ng-if="almostMixableDrink.strIngredient1 != ''">{{almostMixableDrink.strMeasure1}}{{almostMixableDrink.strIngredient1}}</div>
-    <div ng-if="almostMixableDrink.strIngredient2 != ''">{{almostMixableDrink.strMeasure2}}{{almostMixableDrink.strIngredient2}}</div>
-    <div ng-if="almostMixableDrink.strIngredient3 != ''">{{almostMixableDrink.strMeasure3}}{{almostMixableDrink.strIngredient3}}</div>
-    <div ng-if="almostMixableDrink.strIngredient4 != ''">{{almostMixableDrink.strMeasure4}}{{almostMixableDrink.strIngredient4}}</div>
-    <div ng-if="almostMixableDrink.strIngredient5 != ''">{{almostMixableDrink.strMeasure5}}{{almostMixableDrink.strIngredient5}}</div>
-    <div ng-if="almostMixableDrink.strIngredient6 != ''">{{almostMixableDrink.strMeasure6}}{{almostMixableDrink.strIngredient6}}</div>
-    <div ng-if="almostMixableDrink.strIngredient7 != ''">{{almostMixableDrink.strMeasure7}}{{almostMixableDrink.strIngredient7}}</div>
-    <div ng-if="almostMixableDrink.strIngredient8 != ''">{{almostMixableDrink.strMeasure8}}{{almostMixableDrink.strIngredient8}}</div>
-    <div ng-if="almostMixableDrink.strIngredient9 != ''">{{almostMixableDrink.strMeasure9}}{{almostMixableDrink.strIngredient9}}</div>
-    <div ng-if="almostMixableDrink.strIngredient10 != ''">{{almostMixableDrink.strMeasure10}}{{almostMixableDrink.strIngredient10}}</div>
-    <div ng-if="almostMixableDrink.strIngredient11 != ''">{{almostMixableDrink.strMeasure11}}{{almostMixableDrink.strIngredient11}}</div>
-    <div ng-if="almostMixableDrink.strIngredient12 != ''">{{almostMixableDrink.strMeasure12}}{{almostMixableDrink.strIngredient12}}</div>
-    <div ng-if="almostMixableDrink.strIngredient13 != ''">{{almostMixableDrink.strMeasure13}}{{almostMixableDrink.strIngredient13}}</div>
-    <div ng-if="almostMixableDrink.strIngredient14 != ''">{{almostMixableDrink.strMeasure14}}{{almostMixableDrink.strIngredient14}}</div>
-    <div ng-if="almostMixableDrink.strIngredient15 != ''">{{almostMixableDrink.strMeasure15}}{{almostMixableDrink.strIngredient15}}</div>
-    <div ng-if="almostMixableDrink.strDrinkThumb != ''"><img src="{{almostMixableDrink.strDrinkThumb}}"></div>
+    <h1 ng-show="showAlmostMixable" class="lightBrown">Drinks you can make with 1 extra ingredient that you don't have</h1>
+    <div ng-repeat="almostMixableDrink in almostMixableDrinks" class="row" style="margin: 20px; border: 20px;">
+        <h3>{{almostMixableDrink.strDrink}}</h3>
+        <strong>{{almostMixableDrink.strAlcoholic}} {{almostMixableDrink.strCategory}}</strong><br>
+        <strong>Glass:</strong> {{almostMixableDrink.strGlass}}
+        <ul style="margin-bottom: 0;">
+        <div ng-if="almostMixableDrink.strIngredient1 != ''"><li>{{almostMixableDrink.strMeasure1}}{{almostMixableDrink.strIngredient1}}</li></div>
+        <div ng-if="almostMixableDrink.strIngredient2 != ''"><li>{{almostMixableDrink.strMeasure2}}{{almostMixableDrink.strIngredient2}}</li></div>
+        <div ng-if="almostMixableDrink.strIngredient3 != ''"><li>{{almostMixableDrink.strMeasure3}}{{almostMixableDrink.strIngredient3}}</li></div>
+        <div ng-if="almostMixableDrink.strIngredient4 != ''"><li>{{almostMixableDrink.strMeasure4}}{{almostMixableDrink.strIngredient4}}</li></div>
+        <div ng-if="almostMixableDrink.strIngredient5 != ''"><li>{{almostMixableDrink.strMeasure5}}{{almostMixableDrink.strIngredient5}}</li></div>
+        <div ng-if="almostMixableDrink.strIngredient6 != ''"><li>{{almostMixableDrink.strMeasure6}}{{almostMixableDrink.strIngredient6}}</li></div>
+        <div ng-if="almostMixableDrink.strIngredient7 != ''"><li>{{almostMixableDrink.strMeasure7}}{{almostMixableDrink.strIngredient7}}</li></div>
+        <div ng-if="almostMixableDrink.strIngredient8 != ''"><li>{{almostMixableDrink.strMeasure8}}{{almostMixableDrink.strIngredient8}}</li></div>
+        <div ng-if="almostMixableDrink.strIngredient9 != ''"><li>{{almostMixableDrink.strMeasure9}}{{almostMixableDrink.strIngredient9}}</li></div>
+        <div ng-if="almostMixableDrink.strIngredient10 != ''"><li>{{almostMixableDrink.strMeasure10}}{{almostMixableDrink.strIngredient10}}</li></div>
+        <div ng-if="almostMixableDrink.strIngredient11 != ''"><li>{{almostMixableDrink.strMeasure11}}{{almostMixableDrink.strIngredient11}}</li></div>
+        <div ng-if="almostMixableDrink.strIngredient12 != ''"><li>{{almostMixableDrink.strMeasure12}}{{almostMixableDrink.strIngredient12}}</li></div>
+        <div ng-if="almostMixableDrink.strIngredient13 != ''"><li>{{almostMixableDrink.strMeasure13}}{{almostMixableDrink.strIngredient13}}</li></div>
+        <div ng-if="almostMixableDrink.strIngredient14 != ''"><li>{{almostMixableDrink.strMeasure14}}{{almostMixableDrink.strIngredient14}}</li></div>
+        <div ng-if="almostMixableDrink.strIngredient15 != ''"><li>{{almostMixableDrink.strMeasure15}}{{almostMixableDrink.strIngredient15}}</li></div>
+        </ul>
+        <strong>Instructions:</strong> {{almostMixableDrink.strInstructions}}<br><br>
+        <div ng-if="almostMixableDrink.strDrinkThumb != ''"><img src="{{almostMixableDrink.strDrinkThumb}}"></div>
+    </div>
 </div>
