@@ -15,7 +15,6 @@ angular.module("drinks").directive("getIngredients", function(){
             });
             
             $scope.submitChoices = function() {
-                $scope.submitted = true;
                 $scope.drinkList = [];
                 $scope.possibleDrinks = [];
                 $scope.mixableDrinks = [];
@@ -80,6 +79,18 @@ angular.module("drinks").directive("getIngredients", function(){
                                     }
                                 }
                                 
+                                if ($scope.mixableDrinks.length > 0) {
+                                    $scope.showMixable = true;
+                                } else {
+                                    $scope.showMixable = false;
+                                }
+                                
+                                if ($scope.almostMixableDrinks.length > 0) {
+                                    $scope.showAlmostMixable = true;
+                                } else {
+                                    $scope.showAlmostMixable = false;
+                                }
+                                
                             }, function(error){
                                 console.log(error.message);
                             });
@@ -88,6 +99,7 @@ angular.module("drinks").directive("getIngredients", function(){
                         console.log(error.message);
                     });
                 });
+                $('html, body').animate({scrollTop: $("#resultsDiv").offset().top}, 2000);
             };
         }]
     }

@@ -1,0 +1,35 @@
+.mainTitle {
+    color: white;
+    text-shadow: 2px 2px 8px #000000;
+    font-size: 100px;
+}
+
+body {
+    background-color: #1e1202;
+    color: antiquewhite;
+}
+
+.margined {
+    margin: 2em 0 1em;
+}
+
+.explanation {
+    margin-bottom: 2em;
+}
+
+.largeButton {
+    height: 30px;
+    width: 100px;
+    color: black;
+    font-size: 20px;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+.lightBrown {
+    background-color: #422a0b;
+    border-radius: 8px;
+    border: 1px solid #a06f2e;
+    padding: 10px;
+    margin-bottom: 1em;
+}
