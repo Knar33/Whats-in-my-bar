@@ -28,11 +28,11 @@ angular.module("drinks").directive("getIngredients", function(){
                 
                 //drinks you can mix with 1 or 2 additional ingredients
                 $scope.drinkList.forEach(function(drink){
-                    $http.get("http://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + drink.split('_').join(' ')).then(function(result2){
+                    $https.get("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + drink.split('_').join(' ')).then(function(result2){
                         $scope.retreivedDrinks = result2.data;
                         //for each drink the API call returned
                         $scope.retreivedDrinks.drinks.forEach(function(retreivedDrink) {
-                            $http.get("http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + retreivedDrink.idDrink).then(function(result3){
+                            $https.get("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + retreivedDrink.idDrink).then(function(result3){
                                 $scope.retreivedDrinkData = result3.data;
                                 var mixable = true;
                                 var almostMixable = true;
