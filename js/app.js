@@ -8,7 +8,7 @@ angular.module("drinks").directive("getIngredients", function(){
             $scope.inputs = {};
             $scope.submitted = false;
             
-            $http.get("http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list").then(function(result){
+            $https.get("http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list").then(function(result){
                 $scope.ingredients = result.data;
             }, function(error){
                 console.log(error.message);
