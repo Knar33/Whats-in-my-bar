@@ -1,6 +1,6 @@
 <form id="drinkForm" name="drinkForm" ng-submit="submitChoices()" class="lightBrown">
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-2" ng-repeat="ingredient in ingredients.drinks | orderBy:'strIngredient1'">
+            <div class="col-xs-12 col-sm-12 col-md-2" ng-repeat="ingredient in ingredients.drinks | orderBy:'strIngredient1'">
                 <label for="{{ ingredient.strIngredient1.split(' ').join('_') }}">
                     <input type="checkbox" ng-model="inputs[ingredient.strIngredient1.split(' ').join('_')]" name="{{ ingredient.strIngredient1.split(' ').join('_') }}" id="{{ ingredient.strIngredient1.split(' ').join('_') }}">{{ingredient.strIngredient1}}
                 </label>
